@@ -1,4 +1,4 @@
 package com.daitagroup.mysql.exception;
 
-public class UserNotFoundException {
+public class UserIdMissingException {
 }
