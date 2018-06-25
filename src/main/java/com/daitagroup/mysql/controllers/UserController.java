@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("users")
@@ -16,8 +18,8 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(@RequestBody User user){
-        crudService.addOrUpdateUser(user);
+    public User addUser(@Valid @RequestBody User user){
+        return crudService.addUser(user);
     }
 
     @GetMapping("/{id}")
@@ -28,13 +30,13 @@ public class UserController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateUser(@RequestBody User user){
-        crudService.addOrUpdateUser(user);
+    public User updateUser(@Valid @RequestBody User user){
+        return crudService.updateUser(user);
     }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@RequestBody User user){
+    public void deleteUser(@Valid @RequestBody User user){
         crudService.deleteUser(user);
     }
 

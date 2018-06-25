@@ -1,5 +1,7 @@
 package com.daitagroup.mysql.entities;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +21,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
-    private int id;
+    private Integer id;
     @Getter
     @Setter
     @NotNull
@@ -30,4 +32,14 @@ public class User implements Serializable {
     @NotNull
     @NotEmpty
     private String password;
+
+    @JsonCreator
+    public User() {
+    }
+    //required = true??
+    @JsonCreator
+    public User(@JsonProperty("name") @NotNull @NotEmpty String name, @JsonProperty("password") @NotNull @NotEmpty String password) {
+        this.name = name;
+        this.password = password;
+    }
 }
