@@ -1,4 +1,4 @@
-package com.daitagroup.mysql.exception;
+package com.daitangroup.mysql.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import org.springframework.http.HttpHeaders;

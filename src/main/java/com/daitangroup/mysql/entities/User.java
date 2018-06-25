@@ -1,4 +1,4 @@
-package com.daitagroup.mysql.entities;
+package com.daitangroup.mysql.entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

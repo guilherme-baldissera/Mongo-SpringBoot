@@ -1,4 +1,4 @@
-package com.daitagroup.mysql;
+package com.daitangroup.mysql;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

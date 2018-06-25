@@ -1,6 +1,6 @@
-package com.daitagroup.mysql.services;
+package com.daitangroup.mysql.services;
 
-import com.daitagroup.mysql.entities.User;
+import com.daitangroup.mysql.entities.User;
 
 public interface CRUDService {
     User addUser(User user);

@@ -1,10 +1,10 @@
-package com.daitagroup.mysql.services;
+package com.daitangroup.mysql.services;
 
-import com.daitagroup.mysql.Daos.UserRepository;
-import com.daitagroup.mysql.entities.User;
-import com.daitagroup.mysql.exception.UserAlreadyExistException;
-import com.daitagroup.mysql.exception.UserIdMissingException;
-import com.daitagroup.mysql.exception.UserNotFoundException;
+import com.daitangroup.mysql.Daos.UserRepository;
+import com.daitangroup.mysql.entities.User;
+import com.daitangroup.mysql.exception.UserAlreadyExistException;
+import com.daitangroup.mysql.exception.UserIdMissingException;
+import com.daitangroup.mysql.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

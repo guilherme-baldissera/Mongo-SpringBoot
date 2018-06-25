@@ -1,4 +1,4 @@
-package com.daitagroup.mysql;
+package com.daitangroup.mysql;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

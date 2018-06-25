@@ -1,6 +1,6 @@
-package com.daitagroup.mysql.Daos;
+package com.daitangroup.mysql.Daos;
 
-import com.daitagroup.mysql.entities.User;
+import com.daitangroup.mysql.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.daitagroup.mysql.controllers;
+package com.daitangroup.mysql.controllers;
 
-import com.daitagroup.mysql.entities.User;
-import com.daitagroup.mysql.services.CRUDService;
+import com.daitangroup.mysql.entities.User;
+import com.daitangroup.mysql.services.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

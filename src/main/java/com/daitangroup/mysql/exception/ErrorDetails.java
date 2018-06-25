@@ -1,4 +1,4 @@
-package com.daitagroup.mysql.exception;
+package com.daitangroup.mysql.exception;
 
 import lombok.Getter;
 
