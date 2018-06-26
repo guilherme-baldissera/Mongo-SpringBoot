@@ -81,4 +81,13 @@ public class CRUDServiceImp implements CRUDService {
             throw new UserNotFoundException(USER_NOT_FOUND);
         return user.get();
     }
+
+    public  User getUserByName(String name){
+        User user = userRepository.findByName(name);
+        if(user == null){
+            throw new UserNotFoundException(USER_NOT_FOUND);
+        }
+        return user;
+
+    }
 }

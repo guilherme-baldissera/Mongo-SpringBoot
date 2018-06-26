@@ -10,4 +10,6 @@ public interface CRUDService {
     void deleteUser(User user);
 
     User getUser(String id);
+
+    User getUserByName(String name);
 }
