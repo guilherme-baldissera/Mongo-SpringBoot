@@ -1,4 +1,4 @@
-package com.daitangroup.mysql.Daos;
+package com.daitangroup.mysql.daos;
 
 import com.daitangroup.mysql.entities.User;
 import org.springframework.data.mongodb.repository.MongoRepository;

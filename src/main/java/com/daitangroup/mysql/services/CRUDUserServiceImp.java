@@ -1,6 +1,6 @@
 package com.daitangroup.mysql.services;
 
-import com.daitangroup.mysql.Daos.UserRepository;
+import com.daitangroup.mysql.daos.UserRepository;
 import com.daitangroup.mysql.entities.User;
 import com.daitangroup.mysql.exception.UserAlreadyExistException;
 import com.daitangroup.mysql.exception.UserIdMissingException;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CRUDServiceImp implements CRUDService {
+public class CRUDUserServiceImp implements CRUDUserService {
 
     @Autowired
     UserRepository userRepository;
@@ -22,7 +22,7 @@ public class CRUDServiceImp implements CRUDService {
 
 
 
-    public CRUDServiceImp() {
+    public CRUDUserServiceImp() {
     }
 
     public User addUser(User user){

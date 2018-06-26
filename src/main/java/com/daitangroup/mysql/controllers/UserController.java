@@ -1,7 +1,7 @@
 package com.daitangroup.mysql.controllers;
 
 import com.daitangroup.mysql.entities.User;
-import com.daitangroup.mysql.services.CRUDService;
+import com.daitangroup.mysql.services.CRUDUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private CRUDService crudService;
+    private CRUDUserService crudService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -26,6 +26,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody User getUser(@PathVariable String id){
         return crudService.getUser(id);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody User getUserByName(@RequestParam String name){
+        return crudService.getUserByName(name);
     }
 
     @PutMapping
