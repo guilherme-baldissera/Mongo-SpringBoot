@@ -9,5 +9,5 @@ public interface CRUDService {
 
     void deleteUser(User user);
 
-    User getUser(Integer id);
+    User getUser(String id);
 }

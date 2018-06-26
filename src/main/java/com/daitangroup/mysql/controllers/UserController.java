@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody User getUser(@PathVariable Integer id){
+    public @ResponseBody User getUser(@PathVariable String id){
         return crudService.getUser(id);
     }
 

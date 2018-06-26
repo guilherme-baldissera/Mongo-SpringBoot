@@ -4,24 +4,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-@Entity
+@Document
 public class User implements Serializable {
 
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-    private Integer id;
+    private String id;
     @Getter
     @Setter
     @NotNull
@@ -33,7 +30,7 @@ public class User implements Serializable {
     @NotEmpty
     private String password;
 
-    @JsonCreator
+
     public User() {
     }
     //required = true??

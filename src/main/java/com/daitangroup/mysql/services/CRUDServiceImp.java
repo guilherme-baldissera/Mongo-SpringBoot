@@ -50,7 +50,7 @@ public class CRUDServiceImp implements CRUDService {
 
         User userFromDB2 = userRepository.findByName(user.getName());
 
-        if(userFromDB2 != null && userFromDB2.getId() != user.getId()){
+        if(userFromDB2 != null && !userFromDB2.getId().equals(user.getId())){
             throw new UserAlreadyExistException(USER_ALREADY_EXIST);
         }
 
@@ -75,8 +75,10 @@ public class CRUDServiceImp implements CRUDService {
         userRepository.delete(userFromDB);
     }
 
-    public User getUser(Integer id){
+    public User getUser(String id){
         Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent())
+            throw new UserNotFoundException(USER_NOT_FOUND);
         return user.get();
     }
 }
