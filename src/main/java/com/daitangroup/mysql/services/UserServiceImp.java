@@ -6,6 +6,7 @@ import com.daitangroup.mysql.exception.UserAlreadyExistException;
 import com.daitangroup.mysql.exception.UserIdMissingException;
 import com.daitangroup.mysql.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class UserServiceImp implements UserService {
 
     public User addUser(User user){
         if(userNameExist(user))
-                throw new UserAlreadyExistException(USER_ALREADY_EXIST);
+            throw new UserAlreadyExistException(USER_ALREADY_EXIST);
 
         return userRepository.save(user);
     }
@@ -77,6 +78,15 @@ public class UserServiceImp implements UserService {
         return users;
     }
 
+    public List<User> getAllUsersSortedByName(){
+        List<User> users = userRepository.findAll(new Sort(Sort.DEFAULT_DIRECTION,"name"));
+
+        if(users == null && users.isEmpty())
+            throw new UserNotFoundException(USER_NOT_FOUND);
+
+        return users;
+    }
+
     public  User getUserByName(String name){
         User user = userRepository.findByName(name);
 
@@ -96,9 +106,9 @@ public class UserServiceImp implements UserService {
     }
 
     private boolean userIdExist(User user) {
-        User userFromDB = userRepository.findById(user.getId()).get();
+        Optional<User> userOptinal = userRepository.findById(user.getId());
 
-        if(userFromDB == null)
+        if(!userOptinal.isPresent())
             return false;
 
         return true;

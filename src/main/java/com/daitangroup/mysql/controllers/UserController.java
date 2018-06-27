@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody List<User> getAllUsers(){
-        return crudService.getAllUsers();
+        return crudService.getAllUsersSortedByName();
     }
 
     @GetMapping(params = "name")

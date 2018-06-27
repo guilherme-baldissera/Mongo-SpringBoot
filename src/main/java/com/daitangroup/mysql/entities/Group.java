@@ -14,6 +14,8 @@ import java.util.List;
 
 @Document
 public class Group implements Serializable {
+
+    private static final long serialVersionUID = -5699271237006660766L;
     @Id
     @Getter
     @Setter
@@ -21,12 +23,12 @@ public class Group implements Serializable {
     @Getter
     @Setter
     @NotNull
-    private User userAdmin;
+    private int userIdOwner;
     @Getter
     @Setter
     @NotNull
     @NotEmpty
-    private List<User> guests;
+    private List<Integer> usersIdGuests;
     @Getter
     @Setter
     @NotNull
@@ -37,10 +39,10 @@ public class Group implements Serializable {
     }
 
     @JsonCreator
-    public Group(@JsonProperty("userAdmin") @NotNull User userAdmin, @NotNull @NotEmpty @JsonProperty("guests") List<User> guests,
+    public Group(@JsonProperty("userIdOwner") @NotNull Integer userIdOwner, @JsonProperty("usersIdGuests") @NotNull @NotEmpty List<Integer> usersIdGuests,
                  @JsonProperty("name") @NotNull @NotEmpty String name) {
-        this.userAdmin = userAdmin;
-        this.guests = guests;
+        this.userIdOwner = userIdOwner;
+        this.usersIdGuests = usersIdGuests;
         this.name = name;
     }
 }

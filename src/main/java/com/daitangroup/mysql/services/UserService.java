@@ -15,5 +15,7 @@ public interface UserService {
 
     List<User> getAllUsers();
 
+    List<User> getAllUsersSortedByName();
+
     User getUserByName(String name);
 }
