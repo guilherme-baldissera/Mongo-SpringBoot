@@ -1,9 +1,11 @@
 package com.daitangroup.mysql.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Date;
 
+@AllArgsConstructor
 public class ErrorDetails {
 
     @Getter
@@ -12,13 +14,4 @@ public class ErrorDetails {
     private String message;
     @Getter
     private String details;
-
-    public ErrorDetails(Date timestamp, String message, String details) {
-        super();
-        this.timestamp = timestamp;
-        this.message = message;
-        this.details = details;
-    }
-
-
 }

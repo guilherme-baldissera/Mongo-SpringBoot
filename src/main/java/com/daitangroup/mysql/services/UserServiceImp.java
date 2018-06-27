@@ -8,58 +8,43 @@ import com.daitangroup.mysql.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CRUDUserServiceImp implements CRUDUserService {
-
-    @Autowired
-    UserRepository userRepository;
+public class UserServiceImp implements UserService {
 
     private static String USER_ALREADY_EXIST = "User already exist";
     private static String USER_NOT_FOUND = "User not found";
     private static String USER_ID_MISSED = "User id is missed";
 
+    private UserRepository userRepository;
 
-
-    public CRUDUserServiceImp() {
+    @Autowired
+    public UserServiceImp(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public User addUser(User user){
-
-            User userFromDB = userRepository.findByName(user.getName());
-
-            if(userFromDB != null){
+        if(userNameExist(user))
                 throw new UserAlreadyExistException(USER_ALREADY_EXIST);
-            }
-            return userRepository.save(user);
 
+        return userRepository.save(user);
     }
 
     public User updateUser(User user){
-        if(user.getId() == null){
+        if(user.getId() == null)
             throw new UserIdMissingException(USER_ID_MISSED);
-        }
 
-        User userFromDB = userRepository.findById(user.getId()).get();
-
-        if(userFromDB == null){
+        if(!userIdExist(user))
             throw new UserNotFoundException(USER_NOT_FOUND);
-        }
 
+        User userFromDB = userRepository.findByName(user.getName());
 
-        User userFromDB2 = userRepository.findByName(user.getName());
-
-        if(userFromDB2 != null && !userFromDB2.getId().equals(user.getId())){
+        if(userFromDB != null && !userFromDB.getId().equals(user.getId()))
             throw new UserAlreadyExistException(USER_ALREADY_EXIST);
-        }
 
-        userFromDB.setName(user.getName());
-        userFromDB.setPassword(user.getPassword());
-
-
-        return userRepository.save(userFromDB);
-
+        return userRepository.save(user);
     }
 
     public void deleteUser(User user){
@@ -67,27 +52,55 @@ public class CRUDUserServiceImp implements CRUDUserService {
             throw new UserIdMissingException(USER_ID_MISSED);
         }
 
-        User userFromDB = userRepository.findById(user.getId()).get();
-
-        if(userFromDB == null){
+        if(!userIdExist(user)){
             throw new UserNotFoundException(USER_NOT_FOUND);
         }
-        userRepository.delete(userFromDB);
+
+        userRepository.delete(user);
     }
 
     public User getUser(String id){
         Optional<User> user = userRepository.findById(id);
+
         if(!user.isPresent())
             throw new UserNotFoundException(USER_NOT_FOUND);
+
         return user.get();
+    }
+
+    public List<User> getAllUsers(){
+        List<User> users = userRepository.findAll();
+
+        if(users == null && users.isEmpty())
+            throw new UserNotFoundException(USER_NOT_FOUND);
+
+        return users;
     }
 
     public  User getUserByName(String name){
         User user = userRepository.findByName(name);
-        if(user == null){
-            throw new UserNotFoundException(USER_NOT_FOUND);
-        }
-        return user;
 
+        if(user == null)
+            throw new UserNotFoundException(USER_NOT_FOUND);
+
+        return user;
+    }
+
+    private boolean userNameExist(User user){
+        User userFromDB = userRepository.findByName(user.getName());
+
+        if(userFromDB == null)
+            return false;
+
+        return true;
+    }
+
+    private boolean userIdExist(User user) {
+        User userFromDB = userRepository.findById(user.getId()).get();
+
+        if(userFromDB == null)
+            return false;
+
+        return true;
     }
 }

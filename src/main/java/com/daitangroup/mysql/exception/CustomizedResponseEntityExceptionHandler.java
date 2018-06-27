@@ -26,8 +26,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<Object> handleArgumentNotValidException(ConstraintViolationException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), CONSTRAINT_VIOLATION,
                 request.getDescription(false));
+
         System.out.println(ex.getMessage());
         ex.printStackTrace(System.err);
+
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -35,8 +37,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<Object> handleArgumentNotValidException(InvalidDefinitionException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), BAD_REQUEST,
                 request.getDescription(false));
+
         System.out.println(ex.getMessage());
         ex.printStackTrace(System.err);
+
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -44,8 +48,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<Object> handleUserAlreadyExistException(UserAlreadyExistException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
                 request.getDescription(false));
+
         System.out.println(ex.getMessage());
         ex.printStackTrace(System.err);
+
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -53,8 +59,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
                 request.getDescription(false));
+
         System.out.println(ex.getMessage());
         ex.printStackTrace(System.err);
+
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -62,8 +70,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<Object> handleUserIdMissingxception(UserIdMissingException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
                 request.getDescription(false));
+
         System.out.println(ex.getMessage());
         ex.printStackTrace(System.err);
+
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -72,8 +82,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), BAD_REQUEST,
                 request.getDescription(false));
+
         System.out.println(ex.getMessage());
         ex.printStackTrace(System.err);
+
         return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
 }

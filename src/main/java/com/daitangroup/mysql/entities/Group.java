@@ -33,8 +33,7 @@ public class Group implements Serializable {
     @NotEmpty
     private String name;
 
-    public Group(String id) {
-        this.id = id;
+    public Group(){
     }
 
     @JsonCreator

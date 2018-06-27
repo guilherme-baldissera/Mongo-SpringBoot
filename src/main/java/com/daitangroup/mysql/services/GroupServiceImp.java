@@ -1,26 +1,32 @@
 package com.daitangroup.mysql.services;
 
 import com.daitangroup.mysql.daos.GroupRepository;
-import com.daitangroup.mysql.daos.UserRepository;
 import com.daitangroup.mysql.entities.Group;
+import com.daitangroup.mysql.exception.UserIdMissingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class GroupServiceImp implements GroupService {
 
-    @Autowired
-    UserRepository userRepository;
+    private static String USER_ID_MISSED = "User id is missed";
 
-    @Autowired
     GroupRepository groupRepository;
 
+    UserService crudUserService;
+
     @Autowired
-    CRUDUserService crudUserService;
+    public GroupServiceImp(GroupRepository groupRepository, UserService crudUserService) {
+        this.groupRepository = groupRepository;
+        this.crudUserService = crudUserService;
+    }
 
     @Override
     public Group addGroup(Group group) {
-        //verifying if Users exist in DB
+        if(group.getUserAdmin().getId() == null || group.getUserAdmin().getId().isEmpty())
+            throw new UserIdMissingException(USER_ID_MISSED);
+
         crudUserService.getUser(group.getUserAdmin().getId());
         group.getGuests().stream().forEach(guest -> crudUserService.getUser(guest.getId()));
 

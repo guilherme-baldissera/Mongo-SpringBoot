@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Document
 public class User implements Serializable {
 
+    private static final long serialVersionUID = -2216756051002651100L;
     @Getter
     @Setter
     @Id
@@ -33,7 +34,7 @@ public class User implements Serializable {
 
     public User() {
     }
-    //required = true??
+
     @JsonCreator
     public User(@JsonProperty("name") @NotNull @NotEmpty String name, @JsonProperty("password") @NotNull @NotEmpty String password) {
         this.name = name;
