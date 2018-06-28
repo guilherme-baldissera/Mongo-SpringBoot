@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @RequestMapping("groups")
 public class GroupController {
 
-    GroupService groupService;
+    private GroupService groupService;
 
     @Autowired
     public GroupController(GroupService groupService) {
@@ -22,7 +22,13 @@ public class GroupController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Group addGroup(@Valid @RequestBody Group group){
+    public @ResponseBody Group addGroup(@Valid @RequestBody Group group){
         return groupService.addGroup(group);
     }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody Group getGroup(@PathVariable String id){
+        return groupService.getGroup(id);
+    }
+
 }

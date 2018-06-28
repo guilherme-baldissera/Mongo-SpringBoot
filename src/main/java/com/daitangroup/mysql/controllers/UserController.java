@@ -13,46 +13,46 @@ import java.util.List;
 @RequestMapping("users")
 public class UserController {
 
-    private UserService crudService;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserService crudService) {
-        this.crudService = crudService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User addUser(@Valid @RequestBody User user){
-        return crudService.addUser(user);
+    public @ResponseBody User addUser(@Valid @RequestBody User user){
+        return userService.addUser(user);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody User getUser(@PathVariable String id){
-        return crudService.getUser(id);
+        return userService.getUser(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody List<User> getAllUsers(){
-        return crudService.getAllUsersSortedByName();
+        return userService.getAllUsersSortedByName();
     }
 
     @GetMapping(params = "name")
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody User getUserByName(@RequestParam String name){
-        return crudService.getUserByName(name);
+        return userService.getUserByName(name);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public User updateUser(@Valid @RequestBody User user){
-        return crudService.updateUser(user);
+    public @ResponseBody User updateUser(@Valid @RequestBody User user){
+        return userService.updateUser(user);
     }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@Valid @RequestBody User user){
-        crudService.deleteUser(user);
+        userService.deleteUser(user);
     }
 }

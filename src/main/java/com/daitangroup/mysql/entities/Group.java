@@ -23,12 +23,13 @@ public class Group implements Serializable {
     @Getter
     @Setter
     @NotNull
-    private int userIdOwner;
+    @NotEmpty
+    private String userIdOwner;
     @Getter
     @Setter
     @NotNull
     @NotEmpty
-    private List<Integer> usersIdGuests;
+    private List<String> usersIdGuests;
     @Getter
     @Setter
     @NotNull
@@ -39,7 +40,7 @@ public class Group implements Serializable {
     }
 
     @JsonCreator
-    public Group(@JsonProperty("userIdOwner") @NotNull Integer userIdOwner, @JsonProperty("usersIdGuests") @NotNull @NotEmpty List<Integer> usersIdGuests,
+    public Group(@JsonProperty("userIdOwner") @NotNull String userIdOwner, @JsonProperty("usersIdGuests") @NotNull @NotEmpty List<String> usersIdGuests,
                  @JsonProperty("name") @NotNull @NotEmpty String name) {
         this.userIdOwner = userIdOwner;
         this.usersIdGuests = usersIdGuests;

@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.Instant;
 
 @Document
 public class Message implements Serializable {
@@ -27,26 +27,27 @@ public class Message implements Serializable {
     private String body;
     @Getter
     @Setter
-    @NotNull
-    private Calendar calendar;
+    private Instant time;
     @Getter
     @Setter
     @NotNull
-    private Integer groupId;
+    @NotEmpty
+    private String groupId;
     @Getter
     @Setter
     @NotNull
-    private Integer userIdSent;
+    @NotEmpty
+    private String userIdWhoSent;
 
     public Message() {
     }
 
     @JsonCreator
-    public Message(@JsonProperty("body") @NotNull @NotEmpty String body, @JsonProperty("calendar") @NotNull Calendar calendar,
-                   @JsonProperty("groupId") @NotNull Integer groupId, @JsonProperty("userIdSent") @NotNull Integer userIdSent) {
+    public Message(@JsonProperty("body") @NotNull @NotEmpty String body, @JsonProperty("time") @NotNull Instant time,
+                   @JsonProperty("groupId") @NotNull String groupId, @JsonProperty("userIdWhoSent") @NotNull String userIdWhoSent) {
         this.body = body;
-        this.calendar = calendar;
+        this.time = time;
         this.groupId = groupId;
-        this.userIdSent = userIdSent;
+        this.userIdWhoSent = userIdWhoSent;
     }
 }
