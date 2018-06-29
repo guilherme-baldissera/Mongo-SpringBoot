@@ -17,7 +17,6 @@ public class MessageServiceImp implements MessageService {
 
     private static String USER_NOT_IN_GROUP = "User is not part of the group";
 
-
     private MessageRepository messageRepository;
     private GroupService groupService;
     private UserService userService;
@@ -44,8 +43,6 @@ public class MessageServiceImp implements MessageService {
 
     @Override
     public List<Message> getMessagesFromGroup(String groupId) {
-        groupService.getGroup(groupId);
-
         List<Message> messages = messageRepository.findAllByGroupId(groupId);
 
         return messages;
