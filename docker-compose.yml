@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+  springjava:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: springjavamessanger
+    ports:
+      - "8080:8080"
+    networks:
+      - minha-rede
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge
